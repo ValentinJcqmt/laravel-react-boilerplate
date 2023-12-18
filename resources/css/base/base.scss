@@ -1,3 +1,7 @@
+
+@import '../abstracts/variables.scss';
+@import '../abstracts/mixins.scss';
+
 *,
 *:before,
 *:after {
@@ -5,8 +9,14 @@
 }
 
 *::selection{
-	background: $color_secondary;
-	color: $color_primary;
+	color:$color_dark;
+	background-color: $color_primary;
+}
+
+html{
+	@include thinScrollbar;
+	scroll-behavior: smooth;
+	background-color: $color_dark;
 }
 
 html, body{
@@ -15,21 +25,17 @@ html, body{
 	color:$color_primary;
 }
 
-body{
-	@include thinScrollbar;
-	overflow-y: scroll;
-}
-
-img{
-	max-width: 100%;
-	height:auto;
-}
-
-picture{
-	display:inline-block;
-	img{
-		display: block;
-	}
+.sr-only{
+    border: 0;
+    clip: rect(0 0 0 0); 
+    clip-path: inset(50%);
+    height: 1px;
+    width: 1px;
+    margin: -1px;
+    padding: 0;
+    overflow: hidden;
+    position: absolute;
+    white-space: nowrap; 
 }
 
 .skip-links{
@@ -51,15 +57,41 @@ picture{
 	height:auto;
 }
 
-.sr-only {
-    border: 0;
-    clip: rect(0 0 0 0); 
-    clip-path: inset(50%);
-    height: 1px;
-    width: 1px;
-    margin: -1px;
-    padding: 0;
-    overflow: hidden;
-    position: absolute;
-    white-space: nowrap; 
+ul{
+	li{
+		margin-block: 5px;
+		padding-left:20px;
+		position:relative;
+		&:before{
+			content:"";
+			position:absolute;
+			top:7px;
+			left:6px;
+			width: 6px;
+			height: 6px;
+			border-radius: 6px;
+			background-color: currentColor;
+		}
+	}
+}
+
+main{
+	@include wrapper;
+	padding-block:30px;
+	display: flex;
+	flex-direction: column;
+	gap:30px;
+}
+
+
+img{
+	max-width: 100%;
+	height:auto;
+}
+
+picture{
+	display:inline-block;
+	img{
+		display: block;
+	}
 }

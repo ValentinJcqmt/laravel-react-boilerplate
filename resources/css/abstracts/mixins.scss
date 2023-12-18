@@ -1,25 +1,9 @@
-//== Breakpoints
-@mixin min-size($min) {
-	@media (min-width: $min) {
-		@content;
-	}
-}
-
-@mixin max-size($max) {
-	@media (max-width: $max) {
-		@content;
-	}
-}
-
-@mixin between-size($min, $max) {
-	@media (min-width: $min) and (max-width: $max) {
-		@content;
-	}
-}
-
-@mixin large-desktop {
-	@media (min-width: $min-bg) {
-		@content;
+@mixin wrapper($width: $main_container, $padding: $main_padding){
+	max-width: $width;
+	margin-inline: auto;
+	width: 100%;
+	@if $padding != 0 {
+		padding-inline: $padding;
 	}
 }
 
@@ -41,28 +25,23 @@
 	}
 }
 
-@mixin tablet-only {
-	@media (min-width: $min-sm) and (max-width: $max-sm) {
-		@content;
+@mixin thinScrollbar($bar_color: $color_light){
+	overflow-y: auto;
+	scrollbar-color: $bar_color transparent;
+	scrollbar-width: thin;
+	&::-webkit-scrollbar-track {
+		margin-top: 10px;
+		margin-bottom: 10px;
 	}
-}
-
-@mixin mobile {
-	@media (max-width: $max-xs) {
-		@content;
+	&::-webkit-scrollbar {
+		width: 14px;
+		height: 8px;
 	}
-}
-
-//Apply style only for device that support hover
-@mixin hocus() {
-	@media (hover: hover) {
-		&:hover {
-			@content;
-		}
-	}
-
-	&:focus-visible {
-		@content;
+	&::-webkit-scrollbar-thumb {
+		background-color: $bar_color;
+		border-radius: 999999px;
+		border:solid 5px transparent;
+		background-clip: padding-box;
 	}
 }
 
@@ -90,26 +69,6 @@
 		&:hover, &:focus-visible{
 			background-position: left bottom $botPos;
 		}
-	}
-}
-
-@mixin thinScrollbar{
-	overflow-y: auto;
-	scrollbar-color: transparent $color_primary;
-	scrollbar-width: thin;
-	&::-webkit-scrollbar-track {
-		margin-top: 10px;
-		margin-bottom: 10px;
-	}
-	&::-webkit-scrollbar {
-		width: 14px;
-		height: 8px;
-	}
-	&::-webkit-scrollbar-thumb {
-		background-color: $color_primary;
-		border-radius: 999999px;
-		border:solid 5px transparent;
-		background-clip: padding-box;
 	}
 }
 
