@@ -1,0 +1,125 @@
+//== Breakpoints
+@mixin min-size($min) {
+	@media (min-width: $min) {
+		@content;
+	}
+}
+
+@mixin max-size($max) {
+	@media (max-width: $max) {
+		@content;
+	}
+}
+
+@mixin between-size($min, $max) {
+	@media (min-width: $min) and (max-width: $max) {
+		@content;
+	}
+}
+
+@mixin large-desktop {
+	@media (min-width: $min-bg) {
+		@content;
+	}
+}
+
+@mixin desktop {
+	@media (min-width: $min-lg) {
+		@content;
+	}
+}
+
+@mixin laptop {
+	@media (min-width: $min-md) {
+		@content;
+	}
+}
+
+@mixin tablet {
+	@media (min-width: $min-sm) {
+		@content;
+	}
+}
+
+@mixin tablet-only {
+	@media (min-width: $min-sm) and (max-width: $max-sm) {
+		@content;
+	}
+}
+
+@mixin mobile {
+	@media (max-width: $max-xs) {
+		@content;
+	}
+}
+
+//Apply style only for device that support hover
+@mixin hocus() {
+	@media (hover: hover) {
+		&:hover {
+			@content;
+		}
+	}
+
+	&:focus-visible {
+		@content;
+	}
+}
+
+@mixin hoverUnderline($botPos: 0px, $revert: false){
+	background-size: 201% 1px;
+	background-repeat: repeat-x;
+	display:inline;
+	background-position: right bottom $botPos;
+	text-decoration: none;
+	cursor:pointer;
+	transition:.2s;
+	&:hover, &:focus-visible{
+		text-decoration: none;
+	}
+	@if($revert){
+		background-image: linear-gradient(to right, transparent 49.8%, $color_primary 49.8%);
+		background-position: left bottom $botPos;
+		&:hover, &:focus-visible{
+			background-position: right bottom $botPos;
+		}
+	}
+	@else {
+		background-image: linear-gradient(to right,$color_primary 49.8%,transparent 49.8%);
+		background-position: right bottom $botPos;
+		&:hover, &:focus-visible{
+			background-position: left bottom $botPos;
+		}
+	}
+}
+
+@mixin thinScrollbar{
+	overflow-y: auto;
+	scrollbar-color: transparent $color_primary;
+	scrollbar-width: thin;
+	&::-webkit-scrollbar-track {
+		margin-top: 10px;
+		margin-bottom: 10px;
+	}
+	&::-webkit-scrollbar {
+		width: 14px;
+		height: 8px;
+	}
+	&::-webkit-scrollbar-thumb {
+		background-color: $color_primary;
+		border-radius: 999999px;
+		border:solid 5px transparent;
+		background-clip: padding-box;
+	}
+}
+
+//Générer automatiquement le code d'un wrapper
+@mixin wrapper($container, $sidePadding: 0) {
+	width: 100%;
+	max-width: $container;
+	margin-inline: auto;
+
+	@if $sidePadding != 0 {
+		padding-inline: $sidePadding;
+	}
+}

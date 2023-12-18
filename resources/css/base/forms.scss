@@ -1,0 +1,22 @@
+@import '../abstracts/variables';
+
+input, textarea{
+	padding:12px;
+	background-color:$color_light;
+	border-radius: 6px;
+	border:none;
+	accent-color: $color_primary;
+	font-size: 14px;
+	resize: vertical;
+	border:solid 1px $color_primary;
+	&::placeholder{
+		color:$color_gray;
+		font-weight: 300;
+	}
+}
+
+input[type="checkbox"]{
+	width:16px;
+	height:16px;
+	cursor: pointer;
+}
